@@ -14,14 +14,24 @@
 public class RotateRect {
 	public static void main(String[] args) {
 		// Parse arguments
-		double bottomLeft[] = {Double.parseDouble(args[3]), Double.parseDouble(args[2])};
-		double topRight[] = {Double.parseDouble(args[1]), Double.parseDouble(args[0])};
-		double topLeft[] = {Double.parseDouble(args[3]), Double.parseDouble(args[0])};
-		double bottomRight[] = {Double.parseDouble(args[1]), Double.parseDouble(args[2])};
+		Point bottomLeft = new Point();
+		bottomLeft.x = Double.parseDouble(args[3]);
+		bottomLeft.y = Double.parseDouble(args[2]);
+		Point topRight = new Point();
+		topRight.x = Double.parseDouble(args[1]);
+		topRight.y = Double.parseDouble(args[0]);
+		Point topLeft = new Point();
+		topLeft.x = bottomLeft.x;
+		topLeft.y = topRight.y;
+		Point bottomRight = new Point();
+		bottomRight.x = topRight.x;
+		bottomRight.y = bottomLeft.y;
 		double angle = Double.parseDouble(args[4]);
 		
 		// Calculate center
-		double center[] = {((topRight[0] + bottomLeft[0]) / 2), ((topRight[1] + bottomLeft[1]) / 2)};
+		Point center = new Point();
+		center.x = (topRight.x + bottomLeft.x) / 2;
+		center.y = (topRight.y + bottomLeft.y) / 2;
 		
 		// Apply rotation to all four points
 		bottomLeft = rotate(bottomLeft, angle, center);
@@ -32,31 +42,29 @@ public class RotateRect {
 		// Print results
 		System.out.println("Point order is (in terms of original positions): bottom left, top left, top right, bottom right.");
 		
-		printPoint(bottomLeft);
-		printPoint(topLeft);
-		printPoint(topRight);
-		printPoint(bottomRight);
+		bottomLeft.printPoint();
+		topLeft.printPoint();
+		topRight.printPoint();
+		bottomRight.printPoint();
 	}
 	
-	// Helper method to print each point
-	static void printPoint(double[] point) {
-		System.out.println("(" + String.format("%.2f", point[0]) + ", " + String.format("%.2f", point[1]) + ")");
+	// Helper class to store point data and a method for printing the coordinates.
+	public static class Point {
+		double x, y;
+		
+		void printPoint() {
+			System.out.println("(" + String.format("%.2f", this.x) + ", " + String.format("%.2f", this.y) + ")");
+		}
 	}
 	
 	// Method that does the math for rotating points
-	private static double[] rotate(double[] point, double d, double[] center) {
+	private static Point rotate(Point p, double d, Point c) {
 		// The math (trig functions) for rotation about a center assumes counter-clockwise rotation in radians
 		d = Math.toRadians(360 - d);
 		
-		// Assign arguments to individual variables
-		double x = point[0];
-		double y = point[1];
-		double cx = center[0];
-		double cy = center[1];
-		
 		// Translate points to be centered around origin
-		double offsetX = x - cx;
-		double offsetY = y - cy;
+		double offsetX = p.x - c.x;
+		double offsetY = p.y - c.y;
 		
 		// Calculate x position as if it were rotating around origin
 		// newX = x * cos(d) - y * sin(d)
@@ -67,9 +75,14 @@ public class RotateRect {
 		double newY = offsetX * Math.sin(d) + offsetY * Math.cos(d);
 		
 		// Translate new points back to original center
-		newX += cx;
-		newY += cy;
+		newX += c.x;
+		newY += c.y;
 		
-		return new double[] {newX, newY};
+		// Assign new coordinates to new Point
+		Point rotatedPoint = new Point();
+		rotatedPoint.x = newX;
+		rotatedPoint.y = newY;
+		
+		return rotatedPoint;
 	}
 }
