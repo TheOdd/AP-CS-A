@@ -1,3 +1,5 @@
+package me.owenhines.rectrot;
+
 // Helper class to store point data and a method for printing the coordinates.
 public class Point {
     // WS: use constructor to speed up initialization

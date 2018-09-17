@@ -1,3 +1,5 @@
+package me.owenhines.rectrot;
+
 /* 
  * Challenge++ Exercise
  * 
