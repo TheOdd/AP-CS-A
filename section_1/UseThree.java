@@ -1,7 +1,7 @@
 /* 
 Exercise 1.1.6
 
-Modiy UseArgument.java to make a program UseThree.java that takes three names as 
+Modify UseArgument.java to make a program UseThree.java that takes three names as 
 command-line arguments and prints a proper sentence with the names in the reverse of
 the order given, so that, for example, java UseThree Alice Bob Carol prints Hi Carol, Bob, and Alice.
 */
