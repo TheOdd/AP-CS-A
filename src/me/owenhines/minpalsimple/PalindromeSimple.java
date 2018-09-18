@@ -1,17 +1,17 @@
-package me.owenhines.minpalindrome;
+package me.owenhines.minpalsimple;
 
 /*
- * Challenge++
+ * Challenge++ (Simplified)
  * 
  * Write a program that takes any string from the user, and then 
- * determines the fewest number of characters that need to be added to the string to 
- * make it a palindrome.
+ * determines the fewest number of characters that need to be added 
+ * to the *END* of the string to make it a palindrome.
  */
 
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Palindrome {
+public class PalindromeSimple {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		// Get user's input of word to use
@@ -28,7 +28,7 @@ public class Palindrome {
 		return Objects.equals(new StringBuilder(w).reverse().toString(), w);
 	}
 	
-	// Main method for calculating minimum number of characters to be added
+	// Main method for calculating minimum number of characters to be added to end
 	private static int minCharacters(String w) {
 		// Check if it's already a palindrome
 		if (isPalindrome(w))
