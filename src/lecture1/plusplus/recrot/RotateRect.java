@@ -1,4 +1,4 @@
-package me.owenhines.rectrot;
+package lecture1.plusplus.recrot;
 
 /* 
  * Challenge++ Exercise

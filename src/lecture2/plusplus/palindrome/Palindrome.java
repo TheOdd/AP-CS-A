@@ -1,7 +1,10 @@
-package me.owenhines.minpal;
+package lecture2.plusplus.palindrome;
 
 import java.util.Objects;
 import java.util.Scanner;
+
+// Test case: 1234gabcbag6789
+// Desired output: 8
 
 /*
  * Challenge++
@@ -28,7 +31,7 @@ public class Palindrome {
 		return Objects.equals(new StringBuilder(w).reverse().toString(), w);
 	}
 
-	// Main method for calculating minimum number of characters to be added to end
+	// Main method for calculating minimum number of characters to be added
 	private static int minCharacters(String w) {
 		// Placeholder to keep Eclipse happy
 		return 0;

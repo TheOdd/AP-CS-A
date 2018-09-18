@@ -1,4 +1,4 @@
-package me.owenhines.usethree;
+package lecture0.plusplus.usethree;
 
 /* 
  * Exercise 1.1.6

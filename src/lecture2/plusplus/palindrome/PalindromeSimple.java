@@ -1,4 +1,4 @@
-package me.owenhines.minpalsimple;
+package lecture2.plusplus.palindrome;
 
 /*
  * Challenge++ (Simplified)

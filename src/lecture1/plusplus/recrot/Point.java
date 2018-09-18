@@ -1,4 +1,4 @@
-package me.owenhines.rectrot;
+package lecture1.plusplus.recrot;
 
 // Helper class to store point data and a method for printing the coordinates.
 public class Point {
