@@ -1,10 +1,11 @@
 package lecture2.plusplus.palindrome;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 // Test case: 1234gabcbag6789
 // Desired output: 8
+// Test case: abcdab
+// Desired output: 3
 
 /*
  * Challenge++
@@ -20,20 +21,15 @@ public class Palindrome {
 		// Get user's input of word to use
 		String word = input.nextLine();
 
-		// Print result
-		System.out.println(minCharacters(word));
+		// Calculate and print result
+		System.out.println(word.length() - lcs(word).length());
 
 		input.close();
 	}
-
-	// Helper method for checking if a string is a palindrome
-	private static boolean isPalindrome(String w) {
-		return Objects.equals(new StringBuilder(w).reverse().toString(), w);
-	}
-
-	// Main method for calculating minimum number of characters to be added
-	private static int minCharacters(String w) {
-		// Placeholder to keep Eclipse happy
-		return 0;
+	
+	// Method for longest common substring (not necessarily consecutive characters)
+	private static String lcs(String w) {
+		// idk
+		return "";
 	}
 }
