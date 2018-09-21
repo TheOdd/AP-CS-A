@@ -1,0 +1,94 @@
+package lecture3.challenge.tictactoe;
+
+import java.util.Scanner;
+
+public class TicTacToe {
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		
+		// Initialize board with reference numbers
+		String[][] b = {{"1", "2", "3"}, {"4", "5", "6"}, {"7", "8", "9"}};
+		
+		printBoard(b);
+		System.out.println("You are playing as X.");
+		
+		int choice;
+		
+		while (getWinner(b) == null) {
+			do {
+				System.out.println("Please select a move.");
+				choice = input.nextInt();
+			} while (choice < 1 || choice > 9 || makeMove(b, choice, "X") == null);
+			
+			b = makeMove(b, choice, "X");
+			
+			b = moveAI(b);
+			
+			printBoard(b);
+		}
+		
+		System.out.println(getWinner(b) + " wins!");
+		
+		input.close();
+	}
+	
+	private static void printBoard(String[][] board) {
+		System.out.println(" ––– ––– –––");
+		for (String[] row : board) {
+			for (String move : row) {
+				System.out.print("| " + move + " ");
+			}
+			System.out.print("|" + '\n' + " ––– ––– –––" + '\n');
+		}
+	}
+	
+	private static String[][] makeMove(String[][] board, int move, String player) {
+		String[][] boardClone = cloneBoard(board);
+		String spotVal = board[(move - 1) / 3][(move - 1) % 3];
+		if (!spotVal.equals("X") && !spotVal.equals("O")) {
+			boardClone[(move - 1) / 3][(move - 1) % 3] = player;
+			return boardClone;
+		} else
+			return null;
+	}
+	
+	// Really dumb AI: only makes move to first available place
+	private static String[][] moveAI(String[][] board) {
+		int move;
+		for (move = 1; makeMove(board, move, "O") == null; move++) {}
+		return makeMove(board, move, "O");
+	}
+	
+	private static String[][] cloneBoard(String[][] board) {
+		String[][] boardClone = board.clone();
+		for (int i = 0; i < boardClone.length; i++) {
+			boardClone[i] = new String[3];
+			for (int k = 0; k < boardClone[i].length; k++)
+				boardClone[i][k] = new String(board[i][k]);
+		}
+		return boardClone;
+	}
+	
+	private static String getWinner(String[][] board) {
+		// Check win conditions
+		// Check rows
+		for (String[] row : board) {
+			if (row[0].equals(row[1]) && row[1].equals(row[2]))
+				return row[0];
+		}
+		
+		// Check columns
+		for (int col = 0; col < 3; col++) {
+			if (board[0][col].equals(board[1][col]) && board[1][col].equals(board[2][col]))
+				return board[0][col];
+		}
+		
+		// Check diagonals
+		if (board[0][0].equals(board[1][1]) && board[1][1].equals(board[2][2]))
+			return board[0][0];
+		if (board[0][2].equals(board[1][1]) && board[1][1].equals(board[2][0]))
+			return board[1][1];
+		
+		return null;
+	}
+}
