@@ -47,8 +47,14 @@ public class TicTacToe {
 		else
 			System.out.println(getWinner(b) + " wins!");
 		
+		System.out.println("Would you like to play again? (Y/N)");
+
+		boolean playAgain = input.next().equalsIgnoreCase("Y");
+
 		input.close();
-		// TODO: Implement "play again" functionality
+		
+		if (playAgain)
+			main(null);
 	}
 	
 	private static void printBoard(String[][] board) {
