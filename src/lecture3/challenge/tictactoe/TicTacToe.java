@@ -1,5 +1,15 @@
 package lecture3.challenge.tictactoe;
 
+/*
+ * Challenge
+ * 
+ * Write a TicTacToe game! The user can always go first. The user will enter a
+ * number 1-9 to choose a square. You will write logic (a crude AI) to play the 
+ * computer’s turns (don’t worry, the grade isn’t based on how smart the computer
+ * player is). Display the updated grid before every player turn. When the game ends,
+ * announce who won, and ask the player if they’d like to play again.
+ */
+
 import java.util.Scanner;
 
 public class TicTacToe {
@@ -13,6 +23,7 @@ public class TicTacToe {
 		System.out.println("You are playing as X.");
 		
 		int choice;
+		int moveCount = 0;
 		
 		while (getWinner(b) == null) {
 			do {
@@ -22,14 +33,22 @@ public class TicTacToe {
 			
 			b = makeMove(b, choice, "X");
 			
+			moveCount++;
+			
+			if (moveCount >= 5)
+				break;
 			b = moveAI(b);
 			
 			printBoard(b);
 		}
 		
-		System.out.println(getWinner(b) + " wins!");
+		if (moveCount == 5)
+			System.out.println("Tie!");
+		else
+			System.out.println(getWinner(b) + " wins!");
 		
 		input.close();
+		// TODO: Implement "play again" functionality
 	}
 	
 	private static void printBoard(String[][] board) {
