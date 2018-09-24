@@ -11,6 +11,7 @@ package lecture3.challenge.tictactoe;
  */
 
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class TicTacToe {
 	public static void main(String[] args) {
@@ -77,10 +78,10 @@ public class TicTacToe {
 			return null;
 	}
 	
-	// Really dumb AI: only makes move to first available place
+	// Computer chooses random tile to play
 	private static String[][] moveAI(String[][] board) {
-		int move;
-		for (move = 1; makeMove(board, move, "O") == null; move++) {}
+		int move = ThreadLocalRandom.current().nextInt(1, 10);
+		for (; makeMove(board, move, "O") == null; move = ThreadLocalRandom.current().nextInt(1, 10)) {}
 		return makeMove(board, move, "O");
 	}
 	
