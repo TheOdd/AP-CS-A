@@ -36,7 +36,7 @@ public class TicTacToe {
 			
 			moveCount++;
 			
-			if (moveCount >= 5)
+			if (moveCount >= 5 || getWinner(b) != null)
 				break;
 			b = moveAI(b);
 			
