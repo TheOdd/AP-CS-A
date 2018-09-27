@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class NQueens {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		
+
 		// Get input
 		System.out.println("This program will output all possible configurations of n queens on an n x n chess board.");
 		int n;
@@ -25,9 +25,39 @@ public class NQueens {
 			System.out.println("Please enter integer n. 1 <= n <= 30");
 			n = input.nextInt();
 		} while (n < 1 || n > 30);
+
+		// Storing configurations as base n integers.
+		// All possible configurations (valid and invalid) can be represented
+		// as all of the base n numbers from 0 to n^n - 1 inclusive (in decimal).
+		// Each digit represents the 0-based row index for each column.
+		// i.e: 02413 represents the following board:
+		// |Q| | | | |
+		// | | | |Q| |
+		// | |Q| | | |
+		// | | | | |Q|
+		// | | |Q| | |
 		
+		int minNum = 0;
+		int maxNum = 0;
 		
+		for (int i = 0; i < n; i++) {
+			minNum += (int)Math.pow(n, i) * (n - 1 - i);
+			maxNum += (int)Math.pow(n, i) * (i);
+		}
 		
+		for (int i = minNum; i <= maxNum; i++) {
+			System.out.println(padLeft(Integer.toString(i, n), n) + " " + i);
+		}
+
 		input.close();
 	}
+
+	private static String padLeft(String s, int n) {
+		return String.format("%1$" + n + "s", s).replace(" ", "0");
+	}
+	
+	private static boolean validConfig(int config) {
+		return true;
+	}
+	
 }
