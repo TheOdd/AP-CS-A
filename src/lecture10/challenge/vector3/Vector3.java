@@ -42,39 +42,39 @@ public class Vector3 {
 	}
 	
 	public Vector3 add(Vector3 v) {
-		return new Vector3(this.getX() + v.getX(), this.getY() + v.getY(), this.getZ() + v.getZ());
+		return new Vector3(x + v.x, y + v.y, z + v.z);
 	}
 	
 	public Vector3 crossProduct(Vector3 v) {
-		double newX = this.getY() * v.getZ() - this.getZ() * v.getY();
-		double newY = this.getZ() * v.getX() - this.getX() * v.getZ();
-		double newZ = this.getX() * v.getY() - this.getY() * v.getX();
+		double newX = y * v.z - z * v.y;
+		double newY = z * v.x - x * v.z;
+		double newZ = x * v.y - y * v.x;
 		
 		return new Vector3(newX, newY, newZ);
 	}
 	
 	public double dotProduct(Vector3 v) {
-		return this.getX() * v.getX() + this.getY() * v.getY() + this.getZ() * v.getZ();
+		return x * v.x + y * v.y + z * v.z;
 	}
 	
 	public Vector3 scalarProduct(double s) {
-		return new Vector3(this.getX() * s, this.getY() * s, this.getZ() * s);
+		return new Vector3(x * s, y * s, z * s);
 	}
 	
 	public Vector3 scale(double m) {
-		double scaleFactor = m / this.getMagnitude();
-		return this.scalarProduct(scaleFactor);
+		double scaleFactor = m / getMagnitude();
+		return scalarProduct(scaleFactor);
 	}
 	
 	public Vector3 getUnitVector() {
-		return this.scale(1);
+		return scale(1);
 	}
 	
 	public Vector3 project(Vector3 v) {
-		return v.getUnitVector().scalarProduct(this.dotProduct(v));
+		return v.getUnitVector().scalarProduct(dotProduct(v));
 	}
 	
 	public String toString() {
-		return "[" + this.getX() + ", " + this.getY() + ", " + this.getZ() + "]";
+		return "[" + x + ", " + y + ", " + z + "]";
 	}
 }
