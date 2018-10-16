@@ -57,21 +57,25 @@ public class Vector3 {
 		return x * v.x + y * v.y + z * v.z;
 	}
 	
-	public Vector3 scalarProduct(double s) {
+	public Vector3 scale(double s) {
 		return new Vector3(x * s, y * s, z * s);
 	}
 	
-	public Vector3 scale(double m) {
+	public Vector3 toLength(double m) {
 		double scaleFactor = m / getMagnitude();
-		return scalarProduct(scaleFactor);
+		return scale(scaleFactor);
 	}
 	
 	public Vector3 getUnitVector() {
-		return scale(1);
+		return toLength(1);
 	}
 	
-	public Vector3 project(Vector3 v) {
-		return v.getUnitVector().scalarProduct(dotProduct(v));
+	public Vector3 projectOnto(Vector3 v) {
+		return v.getUnitVector().scale(dotProduct(v));
+	}
+	
+	public double angleWith(Vector3 v) {
+		return Math.acos(dotProduct(v) / (getMagnitude() * v.getMagnitude()));
 	}
 	
 	public String toString() {

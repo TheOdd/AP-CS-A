@@ -25,11 +25,12 @@ public class Main {
 		System.out.println("Cross-product of a and b: " + b.crossProduct(a));
 		System.out.println("Dot-product of a and b: " + b.dotProduct(a));
 		System.out.println("Vector a + Vector b: " + a.add(b));
-		System.out.println("Vector a scaled to have a magnitude of 6: " + a.scale(6));
-		System.out.println("Vector b scaled to have a magnitude of 6: " + b.scale(6));
+		System.out.println("Vector a scaled to have a magnitude of 6: " + a.toLength(6));
+		System.out.println("Vector b scaled to have a magnitude of 6: " + b.toLength(6));
 		System.out.println("Unit Vector of a: " + a.getUnitVector());
 		System.out.println("Unit Vector of b: " + b.getUnitVector());
-		System.out.println("Vector a projected onto Vector b: " + b.project(a));
-		System.out.println("Vector b projected onto Vector a: " + a.project(b));
+		System.out.println("Vector b projected onto Vector a: " + b.projectOnto(a));
+		System.out.println("Vector a projected onto Vector b: " + a.projectOnto(b));
+		System.out.println("The angle between a and b is: " + a.angleWith(b) + " radians");
 	}
 }
