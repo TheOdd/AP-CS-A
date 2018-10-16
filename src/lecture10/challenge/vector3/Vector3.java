@@ -46,9 +46,9 @@ public class Vector3 {
 	}
 	
 	public Vector3 crossProduct(Vector3 v) {
-		double newX = y * v.z - z * v.y;
-		double newY = z * v.x - x * v.z;
-		double newZ = x * v.y - y * v.x;
+		double newX = z * v.y - y * v.z;
+		double newY = x * v.z - z * v.x;
+		double newZ = y * v.x - x * v.y;
 		
 		return new Vector3(newX, newY, newZ);
 	}
