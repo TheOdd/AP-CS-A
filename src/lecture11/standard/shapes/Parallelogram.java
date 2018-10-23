@@ -24,4 +24,16 @@ public class Parallelogram implements IShape {
 			perimeter = 2 * (a + b);
 		return perimeter;
 	}
+	
+	public double getSide() {
+		return a;
+	}
+	
+	public double getBase() {
+		return b;
+	}
+	
+	public double getHeight() {
+		return height;
+	}
 }
