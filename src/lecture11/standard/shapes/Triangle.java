@@ -1,5 +1,7 @@
 package lecture11.standard.shapes;
 
+// Assumed to be equilateral
+
 public class Triangle implements IShape {
 	private double base, height;
 	private double area = -1;
