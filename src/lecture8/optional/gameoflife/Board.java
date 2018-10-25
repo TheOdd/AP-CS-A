@@ -74,16 +74,16 @@ public class Board {
 	}
 	
 	public String toString() {
-		String s = "";
+		StringBuilder s = new StringBuilder("");
 		
 		for (int row = 0; row < size; row++) {
 			for (int col = 0; col < size; col++) {
-				s += getPoint(row, col);
-				s += " ";
+				s.append(getPoint(row, col));
+				s.append(' ');
 			}
-			s += "\n";
+			s.append('\n');
 		}
 		
-		return s;
+		return s.toString();
 	}
 }
