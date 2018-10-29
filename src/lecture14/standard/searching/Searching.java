@@ -39,32 +39,18 @@ public class Searching {
 		// Sort the array
 		Arrays.sort(nums);
 		
-		// Binary search algorithm section
-		
-		System.out.println("Binary search algorithm:");
-		
-		long startTime = System.nanoTime();
-		
-		for (int target = 0; target <= n * 4; target++) {
+		// Compute and compare timings of both algorithms on random integers within range
+		for (int target = (int)(Math.random() * ((4 * n) + 1));; target = (int)(Math.random() * ((4 * n) + 1))) {
+			long startTime = System.nanoTime();
 			int index = searchBinary(nums, target);
-			if (index != -1) {
-				System.out.println((System.nanoTime() - startTime) / 1000000.0 + " ms");
-				break;
-			}
-		}
-		
-		// Linear search algorithm section
-		
-		System.out.println("Linear search algorithm:");
-		
-		startTime = System.nanoTime();
-		
-		for (int target = 0; target <= n * 4; target++) {
-			int index = searchLinear(nums, target);
-			if (index != -1) {
-				System.out.println((System.nanoTime() - startTime) / 1000000.0 + " ms");
-				break;
-			}
+			if (index == -1)
+				continue;
+			
+			System.out.println("Binary search algorithm: " + (System.nanoTime() - startTime) / 1000000.0 + " ms");
+			startTime = System.nanoTime();
+			index = searchLinear(nums, target);
+			System.out.println("Linear search algorithm: " + (System.nanoTime() - startTime) / 1000000.0 + " ms");
+			break;
 		}
 	}
 	
@@ -78,14 +64,10 @@ public class Searching {
 			i = (int)((right + left) / 2);
 			if (nums[i] == target)
 				return i;
-			if (nums[i] > target) {
+			else if (nums[i] > target)
 				right = i;
-				continue;
-			}
-			if (nums[i] < target) {
+			else if (nums[i] < target)
 				left = i;
-				continue;
-			}
 		}
 		
 		// Does not exist in array
