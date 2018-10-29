@@ -75,13 +75,17 @@ public class Searching {
 		int i;
 		
 		while (left != right) {
-			i = (int)((right - left) / 2);
+			i = (int)((right + left) / 2);
 			if (nums[i] == target)
 				return i;
-			if (nums[i] > target)
+			if (nums[i] > target) {
 				right = i;
-			if (nums[i] < target)
+				continue;
+			}
+			if (nums[i] < target) {
 				left = i;
+				continue;
+			}
 		}
 		
 		// Does not exist in array
