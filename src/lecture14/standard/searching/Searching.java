@@ -60,7 +60,7 @@ public class Searching {
 		int right = n;
 		int i;
 		
-		while (left != right) {
+		while (left != right && right - left != 1) {
 			i = (int)((right + left) / 2);
 			if (nums[i] == target)
 				return i;
