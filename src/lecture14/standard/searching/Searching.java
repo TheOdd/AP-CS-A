@@ -62,13 +62,24 @@ public class Searching {
 		
 		while (left != right && right - left != 1) {
 			i = (int)((right + left) / 2);
-			if (nums[i] == target)
+			if (nums[i] == target) {
+				// Get left-most index of target
+				for (;i > 0; i--) {
+					if (nums[i] != target)
+						return i + 1;
+				}
+				// In the case of i equaling 0
 				return i;
+			}
 			else if (nums[i] > target)
 				right = i;
 			else if (nums[i] < target)
 				left = i;
 		}
+		
+		// If last index is target
+		if (nums[n - 1] == target)
+			return n - 1;
 		
 		// Does not exist in array
 		return -1;
