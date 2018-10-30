@@ -60,27 +60,41 @@ public class Searching {
 		int right = n;
 		int i;
 		
-		while (left != right && right - left != 1) {
-			i = (int)((right + left) / 2);
-			if (nums[i] == target) {
-				// Get left-most index of target
-				for (;i > 0; i--) {
-					if (nums[i] != target)
-						return i + 1;
-				}
-				// In the case of i equaling 0
-				return i;
+		// Edge Case Check: First index is target
+		if (target == nums[0])
+			return 0;
+		// Check if target is out of range of nums (lower than)
+		else if (target < nums[0])
+			return -1;
+		// Edge Case Check: Last index is target
+		else if (target == nums[n - 1]) {
+			// Get left-most index of target
+			for (int j = n - 1; j > 0; j--) {
+				if (nums[j] != target)
+					return j + 1;
 			}
-			else if (nums[i] > target)
-				right = i;
-			else if (nums[i] < target)
-				left = i;
 		}
+		// Check if target is out of range of nums (higher than)
+		else if (target > nums[n - 1])
+			return -1;
 		
-		// If last index is target
-		if (nums[n - 1] == target)
-			return n - 1;
-		
+		// Do binary search normally
+		else {
+			while (left != right && right - left != 1) {
+				i = (int)((right + left) / 2);
+				if (nums[i] == target) {
+					// Get left-most index of target
+					for (;i > 0; i--) {
+						if (nums[i] != target)
+							return i + 1;
+					}
+				}
+				else if (nums[i] > target)
+					right = i;
+				else if (nums[i] < target)
+					left = i;
+			}
+		}
 		// Does not exist in array
 		return -1;
 	}
