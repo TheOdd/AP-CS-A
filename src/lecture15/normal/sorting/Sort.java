@@ -40,10 +40,8 @@ public abstract class Sort {
 				if (arr[j] > arr[i]) {
 					// Found target index to insert at
 					int temp = arr[i];
-					// TODO: Try and find a way to do this without making a clone of the array
-					int[] copy = arr.clone();
-					for (int k = j; k < i; k++)
-						arr[k + 1] = copy[k];
+					for (int k = i; k > j; k--)
+						arr[k] = arr[k - 1];
 					arr[j] = temp;
 				}
 			}
