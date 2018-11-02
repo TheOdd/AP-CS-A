@@ -8,7 +8,7 @@ public class Main {
 		
 		System.out.println(Arrays.toString(arr));
 		
-		Sort.insertionSort(arr);
+		Sort.mergeSort(arr);
 		
 		System.out.println(Arrays.toString(arr));
 	}

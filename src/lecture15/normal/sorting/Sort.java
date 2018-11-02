@@ -49,6 +49,48 @@ public abstract class Sort {
 	}
 	
 	public static void mergeSort(int[] arr) {
+		mergeSort(arr, 0, arr.length - 1);
+	}
+	
+	private static void mergeSort(int[] arr, int start, int end) {
+		if (start < end) {
+			int mid = (start + end) / 2;
+			// Recursively sort first half
+			mergeSort(arr, start, mid);
+			// Recursively sort second half
+			mergeSort(arr, mid + 1, end);
+			// Merge halves
+			merge(arr, start, mid, end);
+		}
+	}
+	
+	private static void merge(int[] arr, int start, int mid, int end) {
+		// Array to store sorted subset of arr to be copied over later
+		int[] newArr = new int[arr.length];
 		
+		// i is the first half's index tracker
+		// j is the second half's index tracker
+		// k is newArr's index tracker
+		int i = start, j = mid + 1, k = 0;
+		
+		// Advance on both indices as far as you can
+		while (i <= mid && j <= end) {
+			if (arr[i] < arr[j])
+				newArr[k++] = arr[i++];
+			else
+				newArr[k++] = arr[j++];
+		}
+		
+		// Finish copying remaining vals to newArr
+		
+		while (i <= mid)
+			newArr[k++] = arr[i++];
+		
+		while (j <= end)
+			newArr[k++] = arr[j++];
+		
+		// Copy newArr back over arr
+		for (i = end; i >= start; i--)
+			arr[i] = newArr[--k];
 	}
 }
