@@ -1,4 +1,4 @@
-package lecture15.normal.sorting;
+package lecture15.standard.sorting;
 
 public abstract class Sort {
 	public static void selectionSort(int[] arr) {

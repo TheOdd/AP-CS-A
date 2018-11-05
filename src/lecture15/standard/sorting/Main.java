@@ -1,4 +1,4 @@
-package lecture15.normal.sorting;
+package lecture15.standard.sorting;
 
 import java.util.Arrays;
 

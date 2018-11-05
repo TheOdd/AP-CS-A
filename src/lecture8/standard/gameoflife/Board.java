@@ -1,4 +1,4 @@
-package lecture8.optional.gameoflife;
+package lecture8.standard.gameoflife;
 
 public class Board {
 	private int size;
