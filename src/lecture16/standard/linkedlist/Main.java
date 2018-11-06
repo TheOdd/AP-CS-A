@@ -10,14 +10,14 @@ public class Main {
 		
 		input.close();
 		
-		LinkedList<Integer> list = new LinkedList<Integer>((int)(Math.random() * 10));
-		LinkedList<Integer> listCopy = list;
+		LinkedListNode<Integer> list = new LinkedListNode<Integer>((int)(Math.random() * 10));
+		LinkedListNode<Integer> listCopy = list;
 		
 		for (int i = 1; i < n; i++) {
 			// Random int 0-9
 			int random = (int)(Math.random() * 10);
 			
-			listCopy.next = new LinkedList<Integer>(random);
+			listCopy.next = new LinkedListNode<Integer>(random);
 			listCopy = listCopy.next;
 		}
 		
@@ -25,5 +25,7 @@ public class Main {
 		// listCopy is no longer needed, as it just references the tail node of list
 		
 		System.out.println(list);
+		
+		System.out.println(LinkedListTools.remove(list, 5));
 	}
 }
