@@ -19,4 +19,20 @@ public abstract class LinkedListTools {
 		
 		return newHead;
 	}
+	
+	public static <T> LinkedListNode<T> reverse(LinkedListNode<T> head) {
+		LinkedListNode<T> next = null;
+		LinkedListNode<T> temp = null;
+		
+		while (head.next != null) {
+			temp = head.next;
+			head.next = next;
+			next = head;
+			head = temp;
+		}
+		
+		head.next = next;
+		
+		return head;
+	}
 }

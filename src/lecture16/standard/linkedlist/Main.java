@@ -26,6 +26,6 @@ public class Main {
 		
 		System.out.println(list);
 		
-		System.out.println(LinkedListTools.remove(list, 5));
+		System.out.println(LinkedListTools.reverse(list));
 	}
 }
