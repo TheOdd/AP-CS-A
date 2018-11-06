@@ -35,6 +35,9 @@ public abstract class Sort {
 	public static void insertionSort(int[] arr) {
 		// Top-level array loop
 		for (int i = 1; i < arr.length; i++) {
+			// Short-circuit if arr[i] is already in correct place
+			if (arr[i] > arr[i - 1])
+				continue;
 			// Sub-array loop
 			for (int j = 0; j < i; j++) {
 				if (arr[j] > arr[i]) {
@@ -49,25 +52,25 @@ public abstract class Sort {
 	}
 	
 	public static void mergeSort(int[] arr) {
-		mergeSort(arr, 0, arr.length - 1);
-	}
-	
-	private static void mergeSort(int[] arr, int start, int end) {
-		if (start < end) {
-			int mid = (start + end) / 2;
-			// Recursively sort first half
-			mergeSort(arr, start, mid);
-			// Recursively sort second half
-			mergeSort(arr, mid + 1, end);
-			// Merge halves
-			merge(arr, start, mid, end);
-		}
-	}
-	
-	private static void merge(int[] arr, int start, int mid, int end) {
 		// Array to store sorted subset of arr to be copied over later
 		int[] newArr = new int[arr.length];
 		
+		mergeSort(arr, 0, arr.length - 1, newArr);
+	}
+	
+	private static void mergeSort(int[] arr, int start, int end, int[] newArr) {
+		if (start < end) {
+			int mid = (start + end) / 2;
+			// Recursively sort first half
+			mergeSort(arr, start, mid, newArr);
+			// Recursively sort second half
+			mergeSort(arr, mid + 1, end, newArr);
+			// Merge halves
+			merge(arr, start, mid, end, newArr);
+		}
+	}
+	
+	private static void merge(int[] arr, int start, int mid, int end, int[] newArr) {
 		// i is the first half's index tracker
 		// j is the second half's index tracker
 		// k is newArr's index tracker
