@@ -1,14 +1,14 @@
 package lecture16.standard.linkedlist;
 
 public abstract class LinkedListTools {
-	public static <T> LinkedListNode<T> remove(LinkedListNode<T> node, T v) {
-		LinkedListNode<T> head = null;
-		LinkedListNode<T> pointer = node;
+	public static <T> LinkedListNode<T> remove(LinkedListNode<T> head, T v) {
+		LinkedListNode<T> newHead = null;
+		LinkedListNode<T> pointer = head;
 		
 		do {
-			if (pointer.val != v && head == null) {
-				head = new LinkedListNode<T>(pointer.val);
-				head.next = pointer.next;
+			if (pointer.val != v && newHead == null) {
+				newHead = new LinkedListNode<T>(pointer.val);
+				newHead.next = pointer.next;
 			}
 			
 			if (pointer.next.val == v)
@@ -17,6 +17,6 @@ public abstract class LinkedListTools {
 			pointer = pointer.next;
 		} while (pointer.next != null);
 		
-		return head;
+		return newHead;
 	}
 }
