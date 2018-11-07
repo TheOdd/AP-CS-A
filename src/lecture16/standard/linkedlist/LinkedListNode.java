@@ -20,7 +20,11 @@ public class LinkedListNode<T> {
 	
 	public String toString() {
 		LinkedListNode<T> pointer = this;
-		StringBuilder s = new StringBuilder(this.val.toString());
+		StringBuilder s;
+		if (val == null)
+			s = new StringBuilder("null");
+		else
+			s = new StringBuilder(this.val.toString());
 		
 		while (pointer.next != null) {
 			pointer = pointer.next;
