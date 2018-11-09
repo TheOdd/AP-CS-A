@@ -59,8 +59,10 @@ public abstract class LinkedListTools {
 	}
 	
 	public static LinkedListNode<Integer> add(LinkedListNode<Integer> head1, LinkedListNode<Integer> head2) {
-		if (head1 == null || head2 == null)
-			return null;
+		if (head1 == null)
+			return head2;
+		else if (head2 == null)
+			return head1;
 		
 		if (head1.length() < head2.length()) {
 			LinkedListNode<Integer> temp = head1;
@@ -78,8 +80,9 @@ public abstract class LinkedListTools {
 		int added;
 		
 		do {
-			added = (head1.val + head2.val + carry) % 10;
-			carry = (head1.val + head2.val + carry) / 10;
+			added = head1.val + head2.val + carry;
+			carry = added / 10;
+			added %= 10;
 			
 			head1.val = added;
 			
