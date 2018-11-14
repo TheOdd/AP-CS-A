@@ -10,6 +10,11 @@ public class Main {
 		String s = input.nextLine();
 		System.out.print("Enter a substring length: ");
 		int length = input.nextInt();
+		while (length <= 0) {
+			System.out.println("Please enter a valid length.");
+			System.out.print("Enter a substring length: ");
+			length = input.nextInt();
+		}
 		input.close();
 		Substrings sub = new Substrings(s);
 		HashMap<String, Integer> subs = sub.uniqueSubstringOccurrences(length);
