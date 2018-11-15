@@ -8,16 +8,21 @@ public class Main {
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter a string: ");
 		String s = input.nextLine();
+		Substrings sub = new Substrings(s);
 		System.out.print("Enter a substring length: ");
 		int length = input.nextInt();
-		while (length <= 0) {
-			System.out.println("Please enter a valid length.");
-			System.out.print("Enter a substring length: ");
-			length = input.nextInt();
+		HashMap<String, Integer> subs;
+		while (true) {
+			try {
+				subs = sub.uniqueSubstringOccurrences(length);
+				break;
+			} catch (IllegalArgumentException e) {
+				System.out.println("Please enter a valid length.");
+				System.out.print("Enter a substring length: ");
+				length = input.nextInt();
+			}
 		}
 		input.close();
-		Substrings sub = new Substrings(s);
-		HashMap<String, Integer> subs = sub.uniqueSubstringOccurrences(length);
 		System.out.println("Unique substring count: " + subs.size());
 		System.out.println("Substring occurrences: " + subs);
 	}

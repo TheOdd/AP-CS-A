@@ -16,6 +16,8 @@ public class Substrings {
 	}
 	
 	public HashMap<String, Integer> uniqueSubstringOccurrences(int length) {
+		if (length <= 0)
+			throw new IllegalArgumentException("length must be positive");
 		if (subs == null || length != subLength) {
 			HashMap<String, Integer> strings = new HashMap<String, Integer>();
 			for (int i = 0; i <= val.length() - length; i++) {
